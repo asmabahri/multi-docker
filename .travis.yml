@@ -3,9 +3,9 @@ services:
    - docker
 
 beforee_install:
-   - docker build -t asma24/react-test -f ./client/Dockerfile.dev .
+   - docker build -t asma24/react-test -f ./client/Dockerfile.dev ./client
 script:
-   - docker run asma24/react-test run npm test -- --coverage
+   - docker run asma24/react-test  npm test -- --coverage
 after_success:
    - docker build -t asma24/multi-client ./client  
    - docker build -t asma24/multi-nginx ./nginx
