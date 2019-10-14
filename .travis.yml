@@ -5,7 +5,7 @@ services:
 beforee_install:
    - docker build -t asma24/react-test -f ./client/Dockerfile.dev ./client
 script:
-   - docker run -p 8080:3000 asma24/react-test
+   
    - docker run asma24/react-test  npm test -- --coverage
 after_success:
    - docker build -t asma24/multi-client ./client  
