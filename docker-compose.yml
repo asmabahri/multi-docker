@@ -45,7 +45,7 @@ services:
       dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - '8081:80'  
+      - '3050:80'  
 
 
    
