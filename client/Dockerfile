@@ -1,12 +1,6 @@
-# Use an official node image
 FROM node:9-alpine AS builder
-
-# Reads args and use them to configure the build, setting
-# them as env vars
-
 WORKDIR /app
 
-# Install dependencies
 COPY . .
 RUN rm -rf node_modules
 RUN yarn install
@@ -15,17 +9,9 @@ RUN yarn cache clean
 RUN yarn run build
 
 
-# ---
-
-
-# runner container
-#  - nginx, to serve static built Vue app
-
-# Use an official nginx image
 FROM nginx:1.13-alpine
 
-# COPY dist from builder container to nginx html dir
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 COPY config/nginx.default.conf /etc/nginx/conf.d/default.conf
 
